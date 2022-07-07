@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BoundsConfiner
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,37 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground Bottom
+    uniqueID: 1760603523
+    locked: 0
+  - name: Ground Middle
+    uniqueID: 3233821701
+    locked: 0
+  - name: Ground Top
+    uniqueID: 3676503407
+    locked: 0
+  - name: Stuff 1
+    uniqueID: 238346591
+    locked: 0
+  - name: Stuff 2
+    uniqueID: 677068005
+    locked: 0
+  - name: Dig
+    uniqueID: 386941099
+    locked: 0
+  - name: Water
+    uniqueID: 3077088263
+    locked: 0
+  - name: Instance
+    uniqueID: 71721735
+    locked: 0
+  - name: Front 1
+    uniqueID: 901290209
+    locked: 0
+  - name: Front 2
+    uniqueID: 2599556847
+    locked: 0
+  - name: Collision
+    uniqueID: 3268579075
     locked: 0
