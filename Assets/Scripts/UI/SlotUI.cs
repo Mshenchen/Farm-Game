@@ -65,8 +65,12 @@ namespace Measy.Inventory
             if (itemAmount == 0)
                 return;
             isSelected = !isSelected;
-            slotHightlight.gameObject.SetActive(isSelected);
             inventoryUI.UpdateSlotHightlight(slotIndex);
+            if (slotType == SlotType.Bag)
+            {
+                EventHandler.CallItemSelectedEvent(itemDetails, isSelected);
+            }
+
         } 
         public void OnBeginDrag(PointerEventData eventData)
         {
@@ -107,16 +111,17 @@ namespace Measy.Inventory
                 //清空所有高亮显示
                 inventoryUI.UpdateSlotHightlight(-1);
             }
-            else    //测试扔在地上
-            {
-                if (itemDetails.canDropped)
-                {
-                    //鼠标对应世界地图坐标
-                    var pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z ));
+            //else    //测试扔在地上
+            //{
+            //    if (itemDetails.canDropped)
+            //    {
+            //        //鼠标对应世界地图坐标
+            //        var pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z ));
 
-                    EventHandler.CallInstantiateItemInScene(itemDetails.itemID, pos);
-                }
-            }
+            //        EventHandler.CallInstantiateItemInScene(itemDetails.itemID, pos);
+            //    }
+            //}
+
         }
 
     }
