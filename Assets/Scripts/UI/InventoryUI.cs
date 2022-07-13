@@ -17,10 +17,15 @@ namespace Measy.Inventory
         private void OnEnable()
         {
             EventHandler.UpdateInventoryUI += OnUpdateInventoryUI;
+            EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadedEvent;
         }
+
+        
+
         private void OnDisable()
         {
             EventHandler.UpdateInventoryUI -= OnUpdateInventoryUI;
+            EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadedEvent;
         }
 
         
@@ -33,6 +38,10 @@ namespace Measy.Inventory
                 playerSlots[i].slotIndex = i;
             }
             bagOpened = bagUI.activeInHierarchy;
+        }
+        private void OnBeforeSceneUnloadedEvent()
+        {
+            UpdateSlotHightlight(-1);
         }
         private void Update()
         {

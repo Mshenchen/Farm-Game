@@ -112,6 +112,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -515,27 +527,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Furniture01_19 paper
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 62
-        width: 14
-        height: 15
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b923091ea10864e92aff338c8f5b4623
-      internalID: -1215904961
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Furniture01_20
       rect:
         serializedVersion: 2
@@ -788,7 +779,28 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Furniture01_32 chair
+      name: Furniture01_19
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 62
+        width: 14
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5feb0770410cae7459ddf4388393a0ac
+      internalID: -723715812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Furniture01_32
       rect:
         serializedVersion: 2
         x: 331
@@ -802,8 +814,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e43040334590545848f32cbd4cb761af
-      internalID: 697528162
+      spriteID: b2f5f32e0cab2e24ead4e07694fdb4d6
+      internalID: 24079328
       vertices: []
       indices: 
       edges: []
@@ -834,11 +846,11 @@ TextureImporter:
       Furniture01_22: 1533917915
       Furniture01_23: -1182628468
       Furniture01_14: -1695829619
-      Furniture01_19 paper: -1215904961
       Furniture01_7: -1158972474
       Furniture01_29: -1355830706
       Furniture01_4: 292292571
       Furniture01_11: -188292766
+      Furniture01_32: 24079328
       Furniture01_24: -713011586
       Furniture01_3: -102332372
       Furniture01_20: -1986908761
@@ -850,7 +862,7 @@ TextureImporter:
       Furniture01_28: -736595796
       Furniture01_31: -872109812
       Furniture01_9: -1033199947
-      Furniture01_32 chair: 697528162
+      Furniture01_19: -723715812
       Furniture01_8: -1653881358
   spritePackingTag: 
   pSDRemoveMatte: 0

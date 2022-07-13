@@ -16,7 +16,11 @@ public class TimeManager : MonoBehaviour
     {
         NewGameTime();
     }
-
+    private void Start()
+    {
+        EventHandler.CallGameDateEvent(gameHour, gameDay, gameMonth, gameYear, gameSeason);
+        EventHandler.CallGameMinuteEvent(gameMinute, gameHour);
+    }
     private void NewGameTime()
     {
         gameSecond = 0;
@@ -37,6 +41,13 @@ public class TimeManager : MonoBehaviour
             if (tikTime >= Settings.secondThreshold)
             {
                 tikTime -= Settings.secondThreshold;
+                UpdateGameTime();
+            }
+        }
+        if (Input.GetKey(KeyCode.T))
+        {
+            for (int i = 0; i < 60; i++)
+            {
                 UpdateGameTime();
             }
         }
@@ -88,10 +99,11 @@ public class TimeManager : MonoBehaviour
                                 gameYear = 2022;
                             }
                         }
-                    }
-
+                    }                 
                 }
-            }
+            }            
+            EventHandler.CallGameDateEvent(gameHour, gameDay, gameMonth, gameYear, gameSeason);
         }
+        EventHandler.CallGameMinuteEvent(gameMinute, gameHour);
     }
 }

@@ -10,14 +10,18 @@ namespace Measy.Inventory
         private void OnEnable()
         {
             EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;
+            EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         }
+
+        private void OnAfterSceneLoadedEvent()
+        {
+            itemParent = GameObject.FindWithTag("ItemParent").transform;
+        }
+
         private void OnDisable()
         {
             EventHandler.InstantiateItemInScene -= OnInstantiateItemInScene;
-        }
-        private void Start()
-        {
-            itemParent = GameObject.FindWithTag("ItemParent").transform;
+            EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         }
         private void OnInstantiateItemInScene(int ID,Vector3 pos)
         {
