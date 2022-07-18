@@ -48,13 +48,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(inputDisable==false)
+        if (inputDisable == false)
             PlayerInput();
+        else
+            isMoving = false;
         SwitchAnimation();
     }
     private void FixedUpdate()
     {
-        Movement();
+        if(!inputDisable)
+            Movement();
     }
     private void PlayerInput()
     {
