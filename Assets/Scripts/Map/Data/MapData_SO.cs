@@ -5,5 +5,5 @@ using UnityEngine;
 public class MapData_SO : ScriptableObject
 {
     public string sceneName;
-    public List<TilePropert> tileProperts;
+    public List<TileProperty> tileProperties;
 }

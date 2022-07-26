@@ -25,7 +25,7 @@ namespace Measy.Inventory
         private void Start()
         {
             isSelected = false;
-            if (itemDetails.itemID == 0)
+            if (itemDetails == null)
             {
                 UpdateEmptySlot();
             }
@@ -54,7 +54,10 @@ namespace Measy.Inventory
             if (isSelected)
             {
                 isSelected = false;
+                inventoryUI.UpdateSlotHightlight(-1);
+                EventHandler.CallItemSelectedEvent(itemDetails, isSelected);
             }
+            itemDetails = null;
             slotImage.enabled = false;
             amountText.text = string.Empty;
             button.interactable = false;
@@ -62,7 +65,7 @@ namespace Measy.Inventory
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (itemAmount == 0)
+            if (itemDetails == null)
                 return;
             isSelected = !isSelected;
             inventoryUI.UpdateSlotHightlight(slotIndex);
