@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Measy.CropPlant;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -118,6 +117,7 @@ public class CursorManager : MonoBehaviour
                 ItemType.BreakTool => tool,
                 ItemType.ReapTool => tool,
                 ItemType.Furniture => tool,
+                ItemType.CollectTool =>tool,
                 _ => normal,
             };
             cursorEnable = true;
@@ -136,8 +136,12 @@ public class CursorManager : MonoBehaviour
         TileDetails currentTile = GridMapManager.Instance.GetTileDetailsOnMousePosition(mouseGridPos);
         if (currentItem != null)
         {
+            CropDetails currentCrop = CropManager.Instance.GetCropDetails(currentTile.seedItemID);
             switch (currentItem.itemType)
             {
+                case ItemType.Seed:
+                    if (currentTile.daysSinceDug > -1 && currentTile.seedItemID == -1) SetCursorValid(); else SetCursorInValid();
+                    break;
                 case ItemType.Commodity:
                     if (currentTile.canDropItem&&currentItem.canDropped) SetCursorValid(); else SetCursorInValid();
                     break;
@@ -146,6 +150,14 @@ public class CursorManager : MonoBehaviour
                     break;
                 case ItemType.WaterTool:
                     if (currentTile.daysSinceDug > -1 && currentTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInValid();
+                    break;
+                case ItemType.CollectTool:
+                    if (currentCrop != null)
+                    {
+                        if (currentTile.growthDays >= currentCrop.TotalGrowthDays) SetCursorValid(); else SetCursorInValid();
+                    }
+                    else
+                        SetCursorInValid();
                     break;
             }
         }
