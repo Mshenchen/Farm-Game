@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Measy.Inventory;
 
 public class AnimatorOverride : MonoBehaviour
 {
@@ -24,18 +25,37 @@ public class AnimatorOverride : MonoBehaviour
     {
         EventHandler.ItemSelectedEvent += OnItemSelectedEvent;
         EventHandler.BeforeSceneUnloadEvent += OnBeforSceneUnloadEvent;
+        EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
     }
 
-    private void OnBeforSceneUnloadEvent()
-    {
-        holdItem.enabled = false;
-        SwitchAnimator(PartType.None);
-    }
+   
 
     private void OnDisable()
     {
         EventHandler.ItemSelectedEvent -= OnItemSelectedEvent;
         EventHandler.BeforeSceneUnloadEvent -= OnBeforSceneUnloadEvent;
+        EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
+    }
+
+    private void OnHarvestAtPlayerPosition(int ID)
+    {
+        Sprite itemSprite = InventoryManager.Instance.GetItemDetails(ID).itemOnWorldSprite;
+        if (holdItem.enabled == false)
+        {
+            StartCoroutine(ShowItem(itemSprite));
+        }
+    }
+    private IEnumerator ShowItem(Sprite itemSprite)
+    {
+        holdItem.sprite = itemSprite;
+        holdItem.enabled = true;
+        yield return new WaitForSeconds(1f);
+        holdItem.enabled = false;
+    }
+    private void OnBeforSceneUnloadEvent()
+    {
+        holdItem.enabled = false;
+        SwitchAnimator(PartType.None);
     }
     private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
     {

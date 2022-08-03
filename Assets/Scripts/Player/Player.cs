@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     //使用工具动画
     private float mouseX;
     private float mouseY;
-    //private bool useTool;
+    private bool useTool;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,10 +44,12 @@ public class Player : MonoBehaviour
 
     private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails itemDetails)
     {
+        if (useTool)
+            return;
         if(itemDetails.itemType!=ItemType.Seed&& itemDetails.itemType != ItemType.Commodity&&itemDetails.itemType != ItemType.Furniture)
         {
             mouseX = mouseWorldPos.x - transform.position.x;
-            mouseY = mouseWorldPos.y - transform.position.y;
+            mouseY = mouseWorldPos.y - (transform.position.y+0.85f);
 
             if (Mathf.Abs(mouseX) > Mathf.Abs(mouseY))
                 mouseY = 0;
@@ -62,7 +64,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator UseToolRoutine(Vector3 mouseWorldPos, ItemDetails itemDetails)
     {
-        //useTool = true;
+        useTool = true;
         inputDisable = true;
         yield return null;
         foreach (var anim in animators)
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
         EventHandler.CallExecuteActionAfterAnimation(mouseWorldPos, itemDetails);
         yield return new WaitForSeconds(0.25f);
         //等待动画结束
-        //useTool = false;
+        useTool = false;
         inputDisable = false;
     }
     private void OnMoveToPosition(Vector3 targetPosition)

@@ -13,10 +13,22 @@ namespace Measy.Inventory
         private void OnEnable()
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
+            EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
         }
         private void OnDisable()
         {
             EventHandler.DropItemEvent -= OnDropItemEvent;
+            EventHandler.HarvestAtPlayerPosition -= OnHarvestAtPlayerPosition;
+        }
+
+        private void OnHarvestAtPlayerPosition(int ID)
+        {
+            //是否已经有该物品
+            int index = GetItemIndexInBag(ID);
+
+            AddItemAtIndex(ID, index, 1);
+            //更新UI
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.itemList);
         }
 
         private void OnDropItemEvent(int ID, Vector3 pos,ItemType itemType)

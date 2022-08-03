@@ -80,6 +80,7 @@ namespace Measy.CropPlant
             GameObject cropInstance = Instantiate(cropPrefab, pos, Quaternion.identity, cropParent);
             cropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
             cropInstance.GetComponent<Crop>().cropDetails = cropDetails;
+            cropInstance.GetComponent<Crop>().tileDetails = tileDetails;
         }
 
         /// <summary>
