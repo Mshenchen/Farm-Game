@@ -21,7 +21,7 @@ namespace Measy.Inventory
         public ItemDetails itemDetails;
         public int itemAmount;
 
-        private InventoryUI inventoryUI => GetComponentInParent<InventoryUI>();
+        public InventoryUI inventoryUI => GetComponentInParent<InventoryUI>();
         private void Start()
         {
             isSelected = false;

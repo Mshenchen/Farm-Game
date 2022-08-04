@@ -50,8 +50,9 @@ namespace Measy.Inventory
 
         private void OnInstantiateItemInScene(int ID,Vector3 pos)
         {
-            var item = Instantiate(itemPrefab, pos, Quaternion.identity,itemParent);
+            var item = Instantiate(bounceItemPrefab, pos, Quaternion.identity,itemParent);
             item.itemID = ID;
+            item.GetComponent<ItemBounce>().InitBounceItem(pos, Vector3.up);
         }
         /// <summary>
         /// 获得当前场景所有Item

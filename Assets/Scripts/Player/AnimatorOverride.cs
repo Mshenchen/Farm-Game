@@ -67,6 +67,7 @@ public class AnimatorOverride : MonoBehaviour
             ItemType.HoeTool => PartType.Hoe,
             ItemType.WaterTool =>PartType.Water,
             ItemType.CollectTool =>PartType.Collect,
+            ItemType.ChopTool => PartType.Chap,
             _ => PartType.None
         };
         if (isSelected == false)
