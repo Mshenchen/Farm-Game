@@ -32,6 +32,8 @@ public class Crop : MonoBehaviour
                     anim.SetTrigger("RotateLeft");
             }
             //≤•∑≈¡£◊”
+            if(cropDetails.hasParticalEffect)
+                EventHandler.CallParticleEffectEvent(cropDetails.effectType, transform.position + cropDetails.effectPos);
             //≤•∑≈…˘“Ù
         }
 

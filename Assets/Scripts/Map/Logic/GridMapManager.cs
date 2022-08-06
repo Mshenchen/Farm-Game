@@ -18,6 +18,8 @@ namespace Measy.Map
 
         //场景名字+坐标和对应的瓦片信息
         private Dictionary<string, TileDetails> tileDetailsDict = new Dictionary<string, TileDetails>();
+        //场景是否第一次加载
+        private Dictionary<string, bool> firstLoadDict = new Dictionary<string, bool>();
         private Grid currentGrid;
         private void OnEnable()
         {
@@ -43,6 +45,7 @@ namespace Measy.Map
         {
             foreach (var mapData in mapDataList)
             {
+                firstLoadDict.Add(mapData.sceneName, true);
                 InitTileDetailsDict(mapData);
             }
         }
@@ -51,6 +54,13 @@ namespace Measy.Map
             currentGrid = FindObjectOfType<Grid>();
             digTilemap = GameObject.FindWithTag("Dig").GetComponent<Tilemap>();
             waterTilemap = GameObject.FindWithTag("Water").GetComponent<Tilemap>();
+            if (firstLoadDict[SceneManager.GetActiveScene().name])
+            {
+                //预先生成农作物
+                EventHandler.CallGenerateCropEvent();
+                firstLoadDict[SceneManager.GetActiveScene().name] = false;
+            }
+            
             RefreshMap();
         }
         /// <summary>
@@ -205,15 +215,16 @@ namespace Measy.Map
                         currentTile.daysSinceWatered = 0;
                         //音效
                         break;
+                    case ItemType.BreakTool:
                     case ItemType.ChopTool:
                         
                         //执行收割方法
-                        currentCrop.ProcessToolAction(itemDetails,currentCrop.tileDetails);
+                        currentCrop?.ProcessToolAction(itemDetails,currentCrop.tileDetails);
                         break;
                     case ItemType.CollectTool:
                         //Crop currentCrop = GetCropObject(mouseWorldPos);
                         //执行收割方法
-                        currentCrop.ProcessToolAction(itemDetails,currentTile);
+                        currentCrop?.ProcessToolAction(itemDetails,currentTile);
                         break;
                 }
                 UpdateTileDetails(currentTile);
@@ -261,12 +272,16 @@ namespace Measy.Map
         /// 更新瓦片信息
         /// </summary>
         /// <param name="tileDetails"></param>
-        private void UpdateTileDetails(TileDetails tileDetails)
+        public void UpdateTileDetails(TileDetails tileDetails)
         {
             string key = tileDetails.girdX + "x" + tileDetails.gridY + "y" + SceneManager.GetActiveScene().name;
             if (tileDetailsDict.ContainsKey(key))
             {
                 tileDetailsDict[key] = tileDetails;
+            }
+            else
+            {
+                tileDetailsDict.Add(key, tileDetails);
             }
         }
         private void DisplayMap(string sceneName)

@@ -261,6 +261,7 @@ MonoBehaviour:
   waterTile: {fileID: 11400000, guid: b631249d6d3cff14f8d3de03f5b5c58c, type: 2}
   mapDataList:
   - {fileID: 11400000, guid: 30817c36afc2bb74fa8b8cc6eaa2a8b6, type: 2}
+  - {fileID: 11400000, guid: b190b41c794a91c4b85a2a491f264d5b, type: 2}
 --- !u!4 &347995895
 Transform:
   m_ObjectHideFlags: 0
@@ -381,6 +382,53 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &480275325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480275327}
+  - component: {fileID: 480275326}
+  m_Layer: 0
+  m_Name: Pool Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &480275326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480275325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3e67c4163a35f45a6083358112832f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolPrefabs:
+  - {fileID: 4416801791266040964, guid: bed72f8e9b28c0f4787cd7f2ad820f0b, type: 3}
+  - {fileID: 3532119125102036971, guid: 8ec4e2e43bc037f4b8a6e270f2e5724e, type: 3}
+--- !u!4 &480275327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480275325}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,6 +1336,9 @@ MonoBehaviour:
   - partType: 5
     partName: 1
     overrideController: {fileID: 22100000, guid: 9f3afa7cd340e46488e79c98e00496b4, type: 2}
+  - partType: 3
+    partName: 3
+    overrideController: {fileID: 22100000, guid: 9d2dbef3deb5f984db62e01290adf5ff, type: 2}
 --- !u!1 &1780507504
 GameObject:
   m_ObjectHideFlags: 0

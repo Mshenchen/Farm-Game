@@ -152,11 +152,14 @@ public class CursorManager : MonoBehaviour
                 case ItemType.WaterTool:
                     if (currentTile.daysSinceDug > -1 && currentTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInValid();
                     break;
+                case ItemType.BreakTool:
                 case ItemType.ChopTool:
                     if (crop != null)
                     {
                         if (crop.CanHarvest&&crop.cropDetails.CheckToolAvailable(currentItem.itemID)) SetCursorValid(); else SetCursorInValid();
                     }
+                    else
+                        SetCursorInValid();
                     break;
                 case ItemType.CollectTool:
                     if (currentCrop != null)
