@@ -69,6 +69,7 @@ public class AnimatorOverride : MonoBehaviour
             ItemType.CollectTool =>PartType.Collect,
             ItemType.ChopTool => PartType.Chap,
             ItemType.BreakTool=>PartType.Break,
+            ItemType.ReapTool => PartType.Reap,
             _ => PartType.None
         };
         if (isSelected == false)

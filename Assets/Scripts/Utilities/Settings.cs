@@ -14,5 +14,6 @@ public class Settings
     public const int hourHold = 23;
     public const int dayHold = 10;
     public const int seasonHold = 3;
-    public const float fadeDuration = 1.5f;
+    public const float fadeDuration = 1.5f; //transition
+    public const int reapAmount = 3;
 }

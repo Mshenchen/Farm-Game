@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using Measy.CropPlant;
 namespace Measy.Map
 {
     public class GridMapManager : Singleton<GridMapManager>
@@ -21,6 +22,7 @@ namespace Measy.Map
         //场景是否第一次加载
         private Dictionary<string, bool> firstLoadDict = new Dictionary<string, bool>();
         private Grid currentGrid;
+        private List<ReapItem> itemsInRadius; //杂草列表
         private void OnEnable()
         {
             EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
@@ -226,6 +228,18 @@ namespace Measy.Map
                         //执行收割方法
                         currentCrop?.ProcessToolAction(itemDetails,currentTile);
                         break;
+                    case ItemType.ReapTool:
+                        int reapCount = 0;
+                        for (int i = 0; i < itemsInRadius.Count; i++)
+                        {
+                            EventHandler.CallParticleEffectEvent(ParticleEffectType.ReapableScenery, itemsInRadius[i].transform.position + Vector3.up);
+                            itemsInRadius[i].SpawnHarvestItems();
+                            Destroy(itemsInRadius[i].gameObject);
+                            reapCount++;
+                            if (reapCount >= Settings.reapAmount)
+                                break;
+                        }
+                        break;
                 }
                 UpdateTileDetails(currentTile);
             }
@@ -247,6 +261,32 @@ namespace Measy.Map
                     currentCrop = colliders[i].GetComponent<Crop>();
             }
             return currentCrop;
+        }
+        /// <summary>
+        /// 返回工具范围内的杂草
+        /// </summary>
+        /// <param name="tool">物品信息</param>
+        /// <returns></returns>
+        public bool HaveReapableItemsInRadius(Vector3 mouseWorldPos, ItemDetails tool)
+        {
+            itemsInRadius = new List<ReapItem>();
+            Collider2D[] colliders = new Collider2D[20];
+            Physics2D.OverlapCircleNonAlloc(mouseWorldPos, tool.itemUseRadius, colliders);
+            if (colliders.Length > 0)
+            {
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    if (colliders[i] != null)
+                    {
+                        if (colliders[i].GetComponent<ReapItem>())
+                        {
+                            var item = colliders[i].GetComponent<ReapItem>();
+                            itemsInRadius.Add(item);
+                        }
+                    }
+                }
+            }
+            return itemsInRadius.Count > 0;
         }
         /// <summary>
         /// 显示挖坑瓦片

@@ -414,6 +414,8 @@ MonoBehaviour:
   poolPrefabs:
   - {fileID: 4416801791266040964, guid: bed72f8e9b28c0f4787cd7f2ad820f0b, type: 3}
   - {fileID: 3532119125102036971, guid: 8ec4e2e43bc037f4b8a6e270f2e5724e, type: 3}
+  - {fileID: 4610558379766229550, guid: 9ea7d61c8ab86144eb5eec2512742aa2, type: 3}
+  - {fileID: 4610558379766229550, guid: 9a6ce7e75c6a05e45a5210b1a4fcc284, type: 3}
 --- !u!4 &480275327
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,6 +1341,18 @@ MonoBehaviour:
   - partType: 3
     partName: 3
     overrideController: {fileID: 22100000, guid: 9d2dbef3deb5f984db62e01290adf5ff, type: 2}
+  - partType: 7
+    partName: 3
+    overrideController: {fileID: 22100000, guid: 690edb709fd6b0f4080b0cd753e8da21, type: 2}
+  - partType: 7
+    partName: 0
+    overrideController: {fileID: 22100000, guid: ec1d4c6acb813754fa144af95433108c, type: 2}
+  - partType: 7
+    partName: 1
+    overrideController: {fileID: 22100000, guid: d48b94d5c66e66c4a81ea8fa8a820d02, type: 2}
+  - partType: 7
+    partName: 2
+    overrideController: {fileID: 22100000, guid: 6d7d6a4c538c2f74998318c7e724027c, type: 2}
 --- !u!1 &1780507504
 GameObject:
   m_ObjectHideFlags: 0
