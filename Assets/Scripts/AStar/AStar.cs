@@ -19,8 +19,14 @@ namespace Measy.AStar
 
         private bool pathFound;
 
-
-        public void BuildPath(string sceneName, Vector2Int startPos, Vector2Int endPos)
+        /// <summary>
+        /// 构建路径更新Stack的每一步
+        /// </summary>
+        /// <param name="sceneName"></param>
+        /// <param name="startPos"></param>
+        /// <param name="endPos"></param>
+        /// <param name="npcMovementStack"></param>
+        public void BuildPath(string sceneName, Vector2Int startPos, Vector2Int endPos,Stack<MovementStep> npcMovementStack)
         {
             pathFound = false;
 
@@ -29,7 +35,7 @@ namespace Measy.AStar
                 //查找最短路径
                 if (FindShortestPath())
                 {
-                    //构建NPC移动路径
+                    UpdatePathOnMovementStepStack(sceneName, npcMovementStack);
                 }
             }
         }
@@ -186,6 +192,24 @@ namespace Measy.AStar
                 return 14 * yDistance + 10 * (xDistance - yDistance);
             }
             return 14 * xDistance + 10 * (yDistance - xDistance);
+        }
+        /// <summary>
+        /// 更新路径每一步的坐标和场景名字
+        /// </summary>
+        /// <param name="sceneName"></param>
+        /// <param name="npcMovementStep"></param>
+        private void UpdatePathOnMovementStepStack(string sceneName,Stack<MovementStep> npcMovementStep)
+        {
+            Node nextNode = targetNode;
+            while (nextNode != null)
+            {
+                MovementStep newStep = new MovementStep();
+                newStep.sceneName = sceneName;
+                newStep.gridCoordinate = new Vector2Int(nextNode.gridPosition.x + originX, nextNode.gridPosition.y + originY);
+                //压入推栈
+                npcMovementStep.Push(newStep);
+                nextNode = nextNode.parentNode;
+            }
         }
     }
 }

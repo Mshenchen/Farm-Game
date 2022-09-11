@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Measy.AStar
 {
-    public class MovementStep : MonoBehaviour
+    public class MovementStep
     {
         public string sceneName;
         public int hour;
