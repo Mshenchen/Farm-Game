@@ -1938,15 +1938,6 @@ MonoBehaviour:
   - tileCoordinate: {x: -17, y: -7}
     gridType: 3
     boolTypeValue: 1
-  - tileCoordinate: {x: -16, y: -13}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -16, y: -12}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -16, y: -11}
-    gridType: 3
-    boolTypeValue: 1
   - tileCoordinate: {x: -16, y: -10}
     gridType: 3
     boolTypeValue: 1
@@ -1957,15 +1948,6 @@ MonoBehaviour:
     gridType: 3
     boolTypeValue: 1
   - tileCoordinate: {x: -16, y: -7}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -15, y: -13}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -15, y: -12}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -15, y: -11}
     gridType: 3
     boolTypeValue: 1
   - tileCoordinate: {x: -15, y: -10}
@@ -1980,15 +1962,6 @@ MonoBehaviour:
   - tileCoordinate: {x: -15, y: -7}
     gridType: 3
     boolTypeValue: 1
-  - tileCoordinate: {x: -14, y: -13}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -14, y: -12}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -14, y: -11}
-    gridType: 3
-    boolTypeValue: 1
   - tileCoordinate: {x: -14, y: -10}
     gridType: 3
     boolTypeValue: 1
@@ -2001,15 +1974,6 @@ MonoBehaviour:
   - tileCoordinate: {x: -14, y: -7}
     gridType: 3
     boolTypeValue: 1
-  - tileCoordinate: {x: -13, y: -13}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -13, y: -12}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -13, y: -11}
-    gridType: 3
-    boolTypeValue: 1
   - tileCoordinate: {x: -13, y: -10}
     gridType: 3
     boolTypeValue: 1
@@ -2020,15 +1984,6 @@ MonoBehaviour:
     gridType: 3
     boolTypeValue: 1
   - tileCoordinate: {x: -13, y: -7}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -12, y: -13}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -12, y: -12}
-    gridType: 3
-    boolTypeValue: 1
-  - tileCoordinate: {x: -12, y: -11}
     gridType: 3
     boolTypeValue: 1
   - tileCoordinate: {x: -12, y: -10}
