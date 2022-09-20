@@ -38,6 +38,8 @@ namespace Measy.CropPlant
                 if (tile == null)
                 {
                     tile = new TileDetails();
+                    tile.girdX = cropGridPos.x;
+                    tile.gridY = cropGridPos.y;
                 }
 
                 tile.daysSinceWatered = -1;

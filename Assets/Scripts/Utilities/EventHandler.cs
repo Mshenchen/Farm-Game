@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Measy.Dialogue;
 public static class EventHandler
 {
     public static event Action<InventoryLocation, List<InventoryItem>> UpdateInventoryUI;
@@ -97,5 +98,10 @@ public static class EventHandler
     public static void CallGenerateCropEvent()
     {
         GenerateCropEvent?.Invoke();
+    }
+    public static event Action<DialoguePiece> ShowDialogueEvent;
+    public static void CallShowDialogueEvent(DialoguePiece piece)
+    {
+        ShowDialogueEvent?.Invoke(piece);
     }
 }

@@ -77,8 +77,8 @@ namespace Measy.AStar
                 {
                     Vector3Int tilePos = new Vector3Int(x + originX, y + originY, 0);
 
-                    TileDetails tile = GridMapManager.Instance.GetTileDetailsOnMousePosition(tilePos);    //Õµ¿¡
-
+                    var key = tilePos.x + "x" + tilePos.y + "y" + sceneName;
+                    TileDetails tile = GridMapManager.Instance.GetTileDetails(key);
                     if (tile != null)
                     {
                         Node node = gridNodes.GetGridNode(x, y);

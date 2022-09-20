@@ -17,7 +17,7 @@ MonoBehaviour:
     gotoSceneName: Home
     scenePathLists:
     - scnenName: Home
-      fromGridCell: {x: -12, y: -25}
+      fromGridCell: {x: -12, y: -24}
       gotoGridCell: {x: 99999, y: 99999}
     - scnenName: 01.Field
       fromGridCell: {x: 99999, y: 99999}

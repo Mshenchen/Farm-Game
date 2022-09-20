@@ -39,6 +39,7 @@ public class NPCMovement : MonoBehaviour
     private bool isInitialised;
     private bool npcMove;
     private bool sceneLoaded;
+    public bool interactable;
     private TimeSpan GameTime => TimeManager.Instance.GameTime;
     //¶¯»­¼ÆÊ±Æ÷
     private float animationBreakTime;
@@ -216,6 +217,7 @@ public class NPCMovement : MonoBehaviour
         currentSchedule = schedule;
         tragetGridPosition = (Vector3Int)schedule.targetGridPosition;
         stopAnimationClip = schedule.clipAtStop;
+        this.interactable = schedule.interactable;
         if (schedule.targetScene == currentScene)
         {
             AStar.Instance.BuildPath(schedule.targetScene, (Vector2Int)currentGridPosition, schedule.targetGridPosition, movementSteps);
@@ -237,7 +239,7 @@ public class NPCMovement : MonoBehaviour
                     {
                         fromPos = path.fromGridCell;
                     }
-                    if (path.fromGridCell.x >= Settings.maxGridSize)
+                    if (path.gotoGridCell.x >= Settings.maxGridSize)
                     {
                         gotoPos = schedule.targetGridPosition;
                     }

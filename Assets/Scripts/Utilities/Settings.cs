@@ -20,5 +20,5 @@ public class Settings
     public const float gridCellDiagonalSize = 1.41f;
     public const float pixelSize = 0.05f;   //20*20ռ 1 unit
     public const float animationBreakTime = 5f;
-    public const int maxGridSize = 9999;
+    public const int maxGridSize = 9998;
 }

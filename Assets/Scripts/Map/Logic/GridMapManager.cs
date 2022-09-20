@@ -164,7 +164,7 @@ namespace Measy.Map
         /// </summary>
         /// <param name="key">x+y+µØÍ¼Ãû×Ö</param>
         /// <returns></returns>
-        private TileDetails GetTileDetails(string key)
+        public TileDetails GetTileDetails(string key)
         {
             if (tileDetailsDict.ContainsKey(key))
             {
