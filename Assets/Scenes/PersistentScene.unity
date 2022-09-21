@@ -998,8 +998,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1149766594}
   - {fileID: 1126932302}
+  - {fileID: 1149766594}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1356,13 +1356,14 @@ GameObject:
   - component: {fileID: 1126932305}
   - component: {fileID: 1126932304}
   - component: {fileID: 1126932303}
+  - component: {fileID: 1126932309}
   m_Layer: 0
-  m_Name: NPC_Mayor (1)
+  m_Name: NPC_Girl02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1126932302
 Transform:
   m_ObjectHideFlags: 0
@@ -1378,7 +1379,7 @@ Transform:
   - {fileID: 1676701084}
   - {fileID: 1213386544}
   m_Father: {fileID: 822003831}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1126932303
 MonoBehaviour:
@@ -1394,18 +1395,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnFinishEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1126932309}
+        m_TargetAssemblyTypeName: NPCFunction, Assembly-CSharp
+        m_MethodName: OpenShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   dialogueList:
-  - faceImage: {fileID: 21300000, guid: 7951faae60d314030a0981ea02e3c592, type: 3}
+  - faceImage: {fileID: 21300000, guid: 0ebf15807ee9d4dcaa0a1aed0fadf257, type: 3}
     onLeft: 1
-    name: Andy
-    dialogueText: "\u4F60\u597D\u6211\u662F\u9547\u957FAndy"
-    hasToPause: 1
-    isDone: 0
-  - faceImage: {fileID: 21300000, guid: e62c299aa3fef458f9f46e8a98fc0608, type: 3}
-    onLeft: 0
-    name: Mike
-    dialogueText: "\u4F60\u597D\uFF0C\u6211\u662FMeasy"
+    name: Mira
+    dialogueText: "\u4F60\u597D\u5440~\u6765\u770B\u770B\u6709\u4EC0\u4E48\u9700\u8981\u7684\uFF01"
     hasToPause: 1
     isDone: 0
 --- !u!114 &1126932304
@@ -1420,7 +1427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99ac03d69262064585dece8bfe2d80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scheduleData: {fileID: 11400000, guid: 56c929827419d3447ba99432826caf23, type: 2}
+  scheduleData: {fileID: 11400000, guid: 06a11e2516d647a45893ca274ca3447c, type: 2}
   currentScene: 01.Field
   normalSpeed: 2
   isMoving: 0
@@ -1436,7 +1443,7 @@ Animator:
   m_GameObject: {fileID: 1126932301}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 41d150eacaa09424d9883d1e3978e378, type: 2}
+  m_Controller: {fileID: 9100000, guid: b6899656bdc804e44891a540e80f0aac, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1480,7 +1487,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008271694, y: 0.30167675}
+  m_Offset: {x: -0.008271694, y: -0.02484417}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -1491,7 +1498,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1563501, y: 1.0003662}
+  m_Size: {x: 1.1563501, y: 1.653408}
   m_EdgeRadius: 0
 --- !u!212 &1126932308
 SpriteRenderer:
@@ -1534,7 +1541,7 @@ SpriteRenderer:
   m_SortingLayerID: 71721735
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 338383346, guid: c44807a4111dc43248353acf5e058a39, type: 3}
+  m_Sprite: {fileID: 1007033402911347040, guid: 48c266ae0734348198694bc6282c5264, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1545,6 +1552,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &1126932309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126932301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd4032715d59394b90838c5404e5d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopData: {fileID: 11400000, guid: a71805511323b7f4b8c9d2b85a0acb42, type: 2}
 --- !u!1 &1149766593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1602,7 @@ Transform:
   - {fileID: 684340401}
   - {fileID: 1159792037}
   m_Father: {fileID: 822003831}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1149766595
 Animator:
@@ -1594,7 +1614,7 @@ Animator:
   m_GameObject: {fileID: 1149766593}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 41d150eacaa09424d9883d1e3978e378, type: 2}
+  m_Controller: {fileID: 9100000, guid: e76de211f0bc97b4f96ea3f925bbb5c3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1955,7 +1975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1213386544
 Transform:
   m_ObjectHideFlags: 0
@@ -2569,7 +2589,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045207669}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37d9d282ba067bd428d51eec67361f1c, type: 3}
   m_Name: 
@@ -2602,6 +2622,9 @@ MonoBehaviour:
   - npc: {fileID: 1149766594}
     startScene: 01.Field
     position: {x: 2.74, y: -14.97, z: 0}
+  - npc: {fileID: 1126932302}
+    startScene: 01.Field
+    position: {x: -0.11, y: -8.89, z: 0}
 --- !u!1 &2061062510
 GameObject:
   m_ObjectHideFlags: 0
