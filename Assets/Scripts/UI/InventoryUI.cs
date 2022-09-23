@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,9 @@ namespace Measy.Inventory
         [Header("通用背包")]
         [SerializeField] private GameObject baseBag;
         public GameObject shopSlotPrefab;
+        [Header("交易UI")]
+        public TradeUI tradeUI;
+        public TextMeshProUGUI playerMoneyText;
         [SerializeField] private SlotUI[] playerSlots;
         [SerializeField] private List<SlotUI> baseBagSlots;
         private void OnEnable()
@@ -23,16 +27,19 @@ namespace Measy.Inventory
             EventHandler.UpdateInventoryUI += OnUpdateInventoryUI;
             EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadedEvent;
             EventHandler.BaseBagOpenEvent += OnBaseBagOpenEvent;
+            EventHandler.BaseBagCloseEvent += OnBaseBagCloseEvent;
+            EventHandler.ShowTradeUI += OnShowTradeUI;
         }
-
-        
 
         private void OnDisable()
         {
             EventHandler.UpdateInventoryUI -= OnUpdateInventoryUI;
             EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadedEvent;
             EventHandler.BaseBagOpenEvent -= OnBaseBagOpenEvent;
+            EventHandler.BaseBagCloseEvent -= OnBaseBagCloseEvent;
+            EventHandler.ShowTradeUI -= OnShowTradeUI;
         }
+
         private void Start()
         {
             //给每一个格子序号
@@ -41,7 +48,19 @@ namespace Measy.Inventory
                 playerSlots[i].slotIndex = i;
             }
             bagOpened = bagUI.activeInHierarchy;
+            playerMoneyText.text = InventoryManager.Instance.playerMoney.ToString();
+            
         }
+        private void OnShowTradeUI(ItemDetails item, bool isSell)
+        {
+            tradeUI.gameObject.SetActive(true);
+            tradeUI.SetupTradeUI(item, isSell);
+        }
+        /// <summary>
+        /// 打开通用背包UI事件
+        /// </summary>
+        /// <param name="slotType"></param>
+        /// <param name="bagData"></param>
         private void OnBaseBagOpenEvent(SlotType slotType, InventoryBag_SO bagData)
         {
             //TODO:通用箱子prefab
@@ -63,8 +82,36 @@ namespace Measy.Inventory
                 baseBagSlots.Add(slot);
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(baseBag.GetComponent<RectTransform>());
+            if (slotType == SlotType.Shop)
+            {
+                bagUI.GetComponent<RectTransform>().pivot = new Vector2(-1, 0.5f);
+                bagUI.SetActive(true);
+                bagOpened = true;
+            }
             //更新UI显示
             OnUpdateInventoryUI(InventoryLocation.Box, bagData.itemList);
+        }
+        /// <summary>
+        /// 关闭通用背包UI事件
+        /// </summary>
+        /// <param name="slotType"></param>
+        /// <param name="bagData"></param>
+        private void OnBaseBagCloseEvent(SlotType slotType, InventoryBag_SO bagData)
+        {
+            baseBag.SetActive(false);
+            itemTooltip.gameObject.SetActive(false);
+            UpdateSlotHightlight(-1);
+            foreach(var slot in baseBagSlots)
+            {
+                Destroy(slot.gameObject);
+            }
+            baseBagSlots.Clear();
+            if (slotType == SlotType.Shop)
+            {
+                bagUI.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+                bagUI.SetActive(false);
+                bagOpened = false;
+            }
         }
         private void OnBeforeSceneUnloadedEvent()
         {
@@ -111,6 +158,7 @@ namespace Measy.Inventory
                     break;
 
             }
+            playerMoneyText.text = InventoryManager.Instance.playerMoney.ToString();
         }
         /// <summary>
         /// 打开关闭背包UI，Button调用事件
