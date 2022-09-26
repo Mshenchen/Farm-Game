@@ -191,7 +191,6 @@ namespace Measy.Map
         {
             var mouseGridPos = currentGrid.WorldToCell(mouseWorldPos);
             var currentTile = GetTileDetailsOnMousePosition(mouseGridPos);
-
             if (currentTile != null)
             {
                 Crop currentCrop = GetCropObject(mouseWorldPos);
@@ -239,6 +238,9 @@ namespace Measy.Map
                             if (reapCount >= Settings.reapAmount)
                                 break;
                         }
+                        break;
+                    case ItemType.Furniture:
+                        EventHandler.CallBuildFurnitureEvent(itemDetails.itemID,mouseWorldPos);
                         break;
                 }
                 UpdateTileDetails(currentTile);

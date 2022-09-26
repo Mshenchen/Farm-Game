@@ -2520,6 +2520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDataList_SO: {fileID: 11400000, guid: c5f5314c101487d4c9cd9e5a08a9482d, type: 2}
+  bluPrintData: {fileID: 11400000, guid: 554ea8ec9e386c6489a3f32c48628d25, type: 2}
   playerBag: {fileID: 11400000, guid: 8ccc344de2d7a7c408dcaa7f9d45adcf, type: 2}
   playerMoney: 300
 --- !u!4 &2034040640

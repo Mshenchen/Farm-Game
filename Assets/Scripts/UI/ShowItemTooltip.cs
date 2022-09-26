@@ -22,6 +22,16 @@ namespace Measy.Inventory
                 inventoryUI.itemTooltip.gameObject.SetActive(true);
                 inventoryUI.itemTooltip.SetupToolTip(slotUI.itemDetails, slotUI.slotType);
                 inventoryUI.itemTooltip.transform.position = transform.position + Vector3.up * 60;
+                if(slotUI.itemDetails.itemType == ItemType.Furniture)
+                {
+                    
+                    inventoryUI.itemTooltip.gameObject.SetActive(true);
+                    inventoryUI.itemTooltip.SetupResourcePanle(slotUI.itemDetails.itemID);
+                }
+                else
+                {
+                    inventoryUI.itemTooltip.resourcePanle.SetActive(false);
+                }
             }
             else
             {

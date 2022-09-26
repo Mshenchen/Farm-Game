@@ -8,6 +8,8 @@ namespace Measy.Inventory
     {
         [Header("物品数据")]
         public ItemDataList_SO itemDataList_SO;
+        [Header("建造蓝图")]
+        public BluPrintDataList_SO bluPrintData;
         [Header("背包数据")]
         public InventoryBag_SO playerBag;
         [Header("交易")]
@@ -16,11 +18,23 @@ namespace Measy.Inventory
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
             EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
+            EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
         }
         private void OnDisable()
         {
             EventHandler.DropItemEvent -= OnDropItemEvent;
             EventHandler.HarvestAtPlayerPosition -= OnHarvestAtPlayerPosition;
+            EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
+        }
+
+        private void OnBuildFurnitureEvent(int ID, Vector3 mousePos)
+        {
+            RemoveItem(ID, 1);
+            BluePrintDetails bluePrint = bluPrintData.GetBluePrintDetails(ID);
+            foreach (var item in bluePrint.resourceItem)
+            {
+                RemoveItem(item.itemID, item.itemAmount);
+            }
         }
 
         private void OnHarvestAtPlayerPosition(int ID)
@@ -206,6 +220,25 @@ namespace Measy.Inventory
             }
             //刷新UI
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.itemList);
+        }
+        /// <summary>
+        /// 检查建造资源物品库存
+        /// </summary>
+        /// <param name="ID">图纸ID</param>
+        /// <returns></returns>
+        public bool CheckStock(int ID)
+        {
+            var bluePrintDetails = bluPrintData.GetBluePrintDetails(ID);
+            foreach (var resourceItem in bluePrintDetails.resourceItem)
+            {
+                var itemStock = playerBag.GetInventoryItem(resourceItem.itemID);
+                if (itemStock.itemAmount >= resourceItem.itemAmount)
+                {
+                    continue;
+                }
+                else return false;
+            }
+            return true;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Measy.Inventory
             EventHandler.DropItemEvent += OnDropItemEvent;
             EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
+            EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
         }
 
         private void OnBeforeSceneUnloadEvent()
@@ -37,6 +38,13 @@ namespace Measy.Inventory
             EventHandler.DropItemEvent += OnDropItemEvent;
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
             EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
+            EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
+        }
+
+        private void OnBuildFurnitureEvent(int ID,Vector3 mousePos)
+        {
+            BluePrintDetails bluePrint = InventoryManager.Instance.bluPrintData.GetBluePrintDetails(ID);
+            var buildItem = Instantiate(bluePrint.buildPrefab, mousePos, Quaternion.identity, itemParent);
         }
 
         private void OnDropItemEvent(int ID, Vector3 mousePos,ItemType itemType)
