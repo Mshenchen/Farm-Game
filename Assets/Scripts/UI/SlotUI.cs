@@ -20,7 +20,18 @@ namespace Measy.Inventory
         //物品信息
         public ItemDetails itemDetails;
         public int itemAmount;
-
+        public InventoryLocation Location
+        {
+            get
+            {
+                return slotType switch
+                {
+                    SlotType.Bag => InventoryLocation.Player,
+                    SlotType.Box => InventoryLocation.Box,
+                    _ => InventoryLocation.Player
+                };
+            }
+        }
         public InventoryUI inventoryUI => GetComponentInParent<InventoryUI>();
         private void Start()
         {
@@ -117,6 +128,10 @@ namespace Measy.Inventory
                 else if (slotType == SlotType.Bag && targetSlot.slotType == SlotType.Shop)//卖
                 {
                     EventHandler.CallShowTradeUI(itemDetails, true);
+                }else if (slotType != SlotType.Shop && targetSlot.slotType != SlotType.Shop && slotType != targetSlot.slotType)
+                {
+                    //跨背包数据交换物品
+                    InventoryManager.Instance.SwapItem(Location, slotIndex, targetSlot.Location, targetSlot.slotIndex);
                 }
 
                 //清空所有高亮显示

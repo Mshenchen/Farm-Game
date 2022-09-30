@@ -337,3 +337,15 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 90
     sellPercentage: 0.8
+  - itemID: 1029
+    itemName: "Box\u56FE\u7EB8"
+    itemType: 2
+    itemIcon: {fileID: -723715812, guid: d67f8bdea7b454ba08443e00d51268b8, type: 3}
+    itemOnWorldSprite: {fileID: 21300000, guid: 3775f8176edd949449f110983092e864, type: 3}
+    itemDescription: "\u9700\u8981\u6728\u5934\u5EFA\u9020Box"
+    itemUseRadius: 4
+    canPickedup: 0
+    canDropped: 1
+    canCarried: 1
+    itemPrice: 300
+    sellPercentage: 0.8
