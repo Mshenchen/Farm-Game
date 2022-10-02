@@ -129,4 +129,9 @@ public static class EventHandler
     {
         BuildFurnitureEvent?.Invoke(ID,pos);
     }
+    public static event Action<Season, LightShift, float> LightShiftChangeEvent;
+    public static void CallLightShiftChangeEvent(Season season,LightShift lightShift,float TimeDifference)
+    {
+        LightShiftChangeEvent?.Invoke(season, lightShift, TimeDifference);
+    }
 }
