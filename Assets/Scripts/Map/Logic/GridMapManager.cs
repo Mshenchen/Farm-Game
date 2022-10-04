@@ -200,6 +200,7 @@ namespace Measy.Map
                     case ItemType.Seed:
                         EventHandler.CallPlantSeedEvent(itemDetails.itemID, currentTile);
                         EventHandler.CallDropItemEvent(itemDetails.itemID, mouseGridPos,itemDetails.itemType);
+                        EventHandler.CallPlaySoundEvent(SoundName.Plant);
                         break;
                     case ItemType.Commodity:
                         EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
@@ -209,12 +210,14 @@ namespace Measy.Map
                         currentTile.daysSinceDug = 0;
                         currentTile.canDig = false;
                         currentTile.canDropItem = false;
+                        EventHandler.CallPlaySoundEvent(SoundName.Hoe);
                         //ÒôÐ§
                         break;
                     case ItemType.WaterTool:
                         SetWaterGround(currentTile);
                         currentTile.daysSinceWatered = 0;
                         //ÒôÐ§
+                        EventHandler.CallPlaySoundEvent(SoundName.Water);
                         break;
                     case ItemType.BreakTool:
                     case ItemType.ChopTool:
@@ -238,6 +241,7 @@ namespace Measy.Map
                             if (reapCount >= Settings.reapAmount)
                                 break;
                         }
+                        EventHandler.CallPlaySoundEvent(SoundName.Reap);
                         break;
                     case ItemType.Furniture:
                         EventHandler.CallBuildFurnitureEvent(itemDetails.itemID,mouseWorldPos);

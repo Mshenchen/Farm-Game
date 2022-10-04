@@ -20,6 +20,7 @@ public class ItemInteractive : MonoBehaviour
                 //对方在右侧 向左摇晃
                 StartCoroutine(RotateLeft());
             }
+            EventHandler.CallPlaySoundEvent(SoundName.Rustle);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -36,6 +37,7 @@ public class ItemInteractive : MonoBehaviour
                 //对方在右侧 向左摇晃
                 StartCoroutine(RotateLeft());
             }
+            EventHandler.CallPlaySoundEvent(SoundName.Rustle);
         }
     }
     private IEnumerator RotateLeft()

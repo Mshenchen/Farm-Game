@@ -17,7 +17,7 @@ MonoBehaviour:
     soundClip: {fileID: 8300000, guid: da0dd58dcb28f24438dc311a2fda12cb, type: 3}
     soundPitchMin: 0.8
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 2
     soundClip: {fileID: 8300000, guid: da0dd58dcb28f24438dc311a2fda12cb, type: 3}
     soundPitchMin: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
     soundClip: {fileID: 8300000, guid: 752875533585b35429ab722577fab7a8, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 4
     soundClip: {fileID: 8300000, guid: 8cba68b00b155a54bb222982250b41ec, type: 3}
     soundPitchMin: 1
@@ -77,44 +77,44 @@ MonoBehaviour:
     soundClip: {fileID: 8300000, guid: 914ce16a52aa14a4799502da79d7be0a, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 15
     soundClip: {fileID: 8300000, guid: 62f7af3bd5d65fb46a72696a8c5d2f53, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 16
     soundClip: {fileID: 8300000, guid: 9996e9d294203bb41980aa160b1085b3, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 17
     soundClip: {fileID: 8300000, guid: 454304e405c899644bcf99f2cf20aa51, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 18
     soundClip: {fileID: 8300000, guid: 50bc742ce58209048ba9c1af1604c9f9, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 19
     soundClip: {fileID: 8300000, guid: a3c4bd8b2c0ead647a16604a38b8316e, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 20
     soundClip: {fileID: 8300000, guid: 22c9425a08f4a0d439ce2b316bc7c6d5, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 21
     soundClip: {fileID: 8300000, guid: cecf83c5233007a41abe62b01fbac5d2, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8
   - soundName: 22
     soundClip: {fileID: 8300000, guid: e72162b232f93264cbee3abe082b6f25, type: 3}
     soundPitchMin: 1
     soundPitchMax: 1.2
-    soundVolume: 0.2
+    soundVolume: 0.8

@@ -35,6 +35,10 @@ public class Crop : MonoBehaviour
             if(cropDetails.hasParticalEffect)
                 EventHandler.CallParticleEffectEvent(cropDetails.effectType, transform.position + cropDetails.effectPos);
             //²¥·ÅÉùÒô
+            if (cropDetails.soundEffect != SoundName.none)
+            {
+                EventHandler.CallPlaySoundEvent(cropDetails.soundEffect);
+            }
         }
 
         if (harvestActionCount >= requireActionCount)
@@ -49,7 +53,7 @@ public class Crop : MonoBehaviour
                     anim.SetTrigger("FallingRight");
                 else
                     anim.SetTrigger("FallingLeft");
-
+                EventHandler.CallPlaySoundEvent(SoundName.TreeFalling);
                 StartCoroutine(HarvestAfterAnimation());
             }
         }
