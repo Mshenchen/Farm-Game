@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using Measy.CropPlant;
+using Measy.Save;
 namespace Measy.Map
 {
-    public class GridMapManager : Singleton<GridMapManager>
+    public class GridMapManager : Singleton<GridMapManager>,ISaveable
     {
         [Header("种地瓦片切换信息")]
         public RuleTile digTile;
@@ -23,6 +24,9 @@ namespace Measy.Map
         private Dictionary<string, bool> firstLoadDict = new Dictionary<string, bool>();
         private Grid currentGrid;
         private List<ReapItem> itemsInRadius; //杂草列表
+
+        public string GUID => GetComponent<DataGUID>().guid;
+
         private void OnEnable()
         {
             EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
@@ -374,6 +378,20 @@ namespace Measy.Map
                 }
             }
             return false;
+        }
+
+        public GameSaveData GenerateSaveData()
+        {
+            GameSaveData saveData = new GameSaveData();
+            saveData.tileDetailsDict = this.tileDetailsDict;
+            saveData.firstLoadDict = this.firstLoadDict;
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData saveData)
+        {
+            this.tileDetailsDict = saveData.tileDetailsDict;
+            this.firstLoadDict = saveData.firstLoadDict;
         }
     }
 }

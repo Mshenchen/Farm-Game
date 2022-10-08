@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class TimeManager : Singleton<TimeManager>
+using Measy.Save;
+public class TimeManager : Singleton<TimeManager>,ISaveable
 {
     private int gameSecond, gameMinute, gameHour, gameDay, gameMonth, gameYear;
     private Season gameSeason = Season.春天;
@@ -14,6 +14,9 @@ public class TimeManager : Singleton<TimeManager>
     //灯光时间差
     private float timeDifference;
     public TimeSpan GameTime => new TimeSpan(gameHour, gameMinute, gameSecond);
+
+    public string GUID => GetComponent<DataGUID>().guid;
+
     protected override void Awake()
     {
         base.Awake();
@@ -167,5 +170,30 @@ public class TimeManager : Singleton<TimeManager>
         }
 
         return LightShift.Morning;
+    }
+
+    public GameSaveData GenerateSaveData()
+    {
+        GameSaveData saveData = new GameSaveData();
+        saveData.timeDict = new Dictionary<string, int>();
+        saveData.timeDict.Add("gameYear", gameYear);
+        saveData.timeDict.Add("gameSeason", (int)gameSeason);
+        saveData.timeDict.Add("gameMonth", gameMonth);
+        saveData.timeDict.Add("gameDay", gameDay);
+        saveData.timeDict.Add("gameHour", gameHour);
+        saveData.timeDict.Add("gameMinute", gameMinute);
+        saveData.timeDict.Add("gameSecond", gameSecond);
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveData)
+    {
+        gameYear = saveData.timeDict["gameYear"];
+        gameSeason = (Season)saveData.timeDict["gameSeason"];
+        gameMonth = saveData.timeDict["gameMonth"];
+        gameDay = saveData.timeDict["gameDay"];
+        gameHour = saveData.timeDict["gameHour"];
+        gameMinute = saveData.timeDict["gameMinute"];
+        gameSecond = saveData.timeDict["gameSecond"];
     }
 }

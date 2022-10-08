@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Measy.Save;
 namespace Measy.Inventory
 {
-    public class ItemManager : MonoBehaviour
+    public class ItemManager : MonoBehaviour,ISaveable
     {
         public Item itemPrefab;
         public Item bounceItemPrefab;
         private Transform itemParent;
         private Transform playerTransform => FindObjectOfType<Player>().transform;
+
+        public string GUID => GetComponent<DataGUID>().guid;
+
         //记录场景Item
         private Dictionary<string, List<SceneItem>> sceneItemDict = new Dictionary<string, List<SceneItem>>();
         //记录场景家具
@@ -175,6 +179,24 @@ namespace Measy.Inventory
                     }
                 }
             }
+        }
+
+        public GameSaveData GenerateSaveData()
+        {
+            GetAllSceneFurniture();
+            GetAllSceneItems();
+            GameSaveData saveData = new GameSaveData();
+            saveData.sceneItemDict = this.sceneItemDict;
+            saveData.sceneFurnitureDict = this.sceneFurnitureDict;
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData saveData)
+        {
+            this.sceneItemDict = saveData.sceneItemDict;
+            this.sceneFurnitureDict = saveData.sceneFurnitureDict;
+            RecreateAllItems();
+            RebuildFurniture();
         }
     }
 

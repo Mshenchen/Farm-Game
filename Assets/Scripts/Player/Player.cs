@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Measy.Save;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,ISaveable
 {
     private Rigidbody2D rb;
     public float speed;
@@ -16,10 +17,18 @@ public class Player : MonoBehaviour
     private float mouseX;
     private float mouseY;
     private bool useTool;
+
+    public string GUID => GetComponent<DataGUID>().guid;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
+    }
+    private void Start()
+    {
+        ISaveable saveable = this;
+        saveable.RegisterSaveable();
     }
     private void OnEnable()
     {
@@ -153,5 +162,19 @@ public class Player : MonoBehaviour
                 anim.SetFloat("InputY", inputY);
             }
         }
+    }
+
+    public GameSaveData GenerateSaveData()
+    {
+        GameSaveData saveData = new GameSaveData();
+        saveData.characterPosDict = new Dictionary<string, SerializableVector3>();
+        saveData.characterPosDict.Add(this.name, new SerializableVector3(transform.position));
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveData)
+    {
+        var targetPosition = saveData.characterPosDict[this.name].ToVector3();
+        transform.position = targetPosition;
     }
 }
