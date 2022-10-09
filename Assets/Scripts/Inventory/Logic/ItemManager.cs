@@ -26,7 +26,11 @@ namespace Measy.Inventory
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
             EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
         }
-
+        private void Start()
+        {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
+        }
         private void OnBeforeSceneUnloadEvent()
         {
             GetAllSceneItems();

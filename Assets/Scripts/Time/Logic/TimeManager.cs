@@ -52,6 +52,8 @@ public class TimeManager : Singleton<TimeManager>,ISaveable
 
     private void Start()
     {
+        ISaveable saveable = this;
+        saveable.RegisterSaveable();
         EventHandler.CallGameDateEvent(gameHour, gameDay, gameMonth, gameYear, gameSeason);
         EventHandler.CallGameMinuteEvent(gameMinute, gameHour,gameDay,gameSeason);
         EventHandler.CallLightShiftChangeEvent(gameSeason, GetCurrentLightShift(), timeDifference);

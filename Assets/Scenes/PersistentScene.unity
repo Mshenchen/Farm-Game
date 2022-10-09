@@ -263,7 +263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &86972841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f2a69a82961d40a1463dfd7b8d2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guid: 
+  guid: 8d06af43-009f-435c-89f9-87bd91593aca
 --- !u!1 &368601370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +1882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f2a69a82961d40a1463dfd7b8d2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guid: 
+  guid: 153c41ba-af47-4d13-8a81-f96574fb8ec1
 --- !u!1 &611413302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2364,7 +2364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f2a69a82961d40a1463dfd7b8d2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guid: 
+  guid: ccaf63e4-fe7f-49d7-87d1-1b26ea216c15
 --- !u!1 &887624947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,6 +2976,7 @@ GameObject:
   - component: {fileID: 1126932304}
   - component: {fileID: 1126932303}
   - component: {fileID: 1126932309}
+  - component: {fileID: 1126932310}
   m_Layer: 0
   m_Name: NPC_Girl02
   m_TagString: Untagged
@@ -3184,6 +3185,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopData: {fileID: 11400000, guid: a71805511323b7f4b8c9d2b85a0acb42, type: 2}
+--- !u!114 &1126932310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126932301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806f2a69a82961d40a1463dfd7b8d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 0c1f3174-72d7-4625-8141-fe42ebe72c8e
 --- !u!1 &1149766593
 GameObject:
   m_ObjectHideFlags: 0
@@ -3199,6 +3213,7 @@ GameObject:
   - component: {fileID: 1149766595}
   - component: {fileID: 1149766599}
   - component: {fileID: 1149766600}
+  - component: {fileID: 1149766601}
   m_Layer: 0
   m_Name: NPC_Mayor
   m_TagString: Untagged
@@ -3388,6 +3403,19 @@ MonoBehaviour:
     dialogueText: "\u4F60\u597D\uFF0C\u6211\u662FMeasy"
     hasToPause: 1
     isDone: 0
+--- !u!114 &1149766601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149766593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806f2a69a82961d40a1463dfd7b8d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: b89b2798-4101-4628-9c07-8baff265a2ec
 --- !u!1 &1159792036
 GameObject:
   m_ObjectHideFlags: 0
@@ -4660,6 +4688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780507506}
   - component: {fileID: 1780507505}
+  - component: {fileID: 1780507507}
   m_Layer: 0
   m_Name: TransitionManager
   m_TagString: Untagged
@@ -4695,6 +4724,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1780507507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780507504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806f2a69a82961d40a1463dfd7b8d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 3be03087-0e0a-4364-abec-0c7e14394b1c
 --- !u!1 &1884524362
 GameObject:
   m_ObjectHideFlags: 0
@@ -5226,7 +5268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f2a69a82961d40a1463dfd7b8d2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guid: 
+  guid: 04e6df8c-f3c5-4e90-8a3c-e282cac29512
 --- !u!1 &2045207669
 GameObject:
   m_ObjectHideFlags: 0

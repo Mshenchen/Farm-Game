@@ -93,7 +93,7 @@ MonoBehaviour:
     itemDescription: "\u571F\u8C46\u79CD\u5B50\u571F\u8C46\u79CD\u5B50\u571F\u8C46\u79CD\u5B50\u571F\u8C46\u79CD\u5B50\u571F\u8C46\u79CD\u5B50"
     itemUseRadius: 1
     canPickedup: 1
-    canDropped: 0
+    canDropped: 1
     canCarried: 1
     itemPrice: 10
     sellPercentage: 0.5
@@ -141,7 +141,7 @@ MonoBehaviour:
     itemDescription: "\u571F\u8C46"
     itemUseRadius: 2
     canPickedup: 1
-    canDropped: 0
+    canDropped: 1
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
     itemDescription: 
     itemUseRadius: 2
     canPickedup: 1
-    canDropped: 0
+    canDropped: 1
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
     itemDescription: 
     itemUseRadius: 1
     canPickedup: 1
-    canDropped: 0
+    canDropped: 1
     canCarried: 1
     itemPrice: 1
     sellPercentage: 1

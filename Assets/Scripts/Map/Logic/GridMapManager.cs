@@ -49,6 +49,8 @@ namespace Measy.Map
 
         private void Start()
         {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
             foreach (var mapData in mapDataList)
             {
                 firstLoadDict.Add(mapData.sceneName, true);

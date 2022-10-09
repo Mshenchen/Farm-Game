@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Measy.Save;
 using UnityEngine.SceneManagement;
 
 namespace Measy.Transition
 {
-    public class TransitionManager : MonoBehaviour
+    public class TransitionManager : MonoBehaviour,ISaveable
     {
         public string startSceneName = string.Empty;
         private CanvasGroup fadeCanvasGroup;
         private bool isFade;
+
+        public string GUID => GetComponent<DataGUID>().guid;
+        private void Awake()
+        {
+            SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+        }
         private void OnEnable()
         {
             EventHandler.TransitionEvent += OnTransitionEvent;
@@ -21,6 +28,8 @@ namespace Measy.Transition
         }
         private IEnumerator Start()
         {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
             fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
             yield return LoadSceneSetActive(startSceneName);
             EventHandler.CallAfterSceneLoadedEvent();
@@ -81,6 +90,30 @@ namespace Measy.Transition
             fadeCanvasGroup.blocksRaycasts = false;
 
             isFade = false;
+        }
+        private IEnumerator LoadSaveDataScene(string sceneName)
+        {
+            yield return Fade(1f);
+            if(SceneManager.GetActiveScene().name!="PersistentScene")   //在游戏过程中，加载另外游戏进度
+            {
+                EventHandler.CallBeforeSceneUnloadEvent();
+                yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            }
+
+            yield return LoadSceneSetActive(sceneName);
+            EventHandler.CallAfterSceneLoadedEvent();
+            yield return Fade(0);
+        }
+        public GameSaveData GenerateSaveData()
+        {
+            GameSaveData saveData = new GameSaveData();
+            saveData.dataSceneName = SceneManager.GetActiveScene().name;
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData saveData)
+        {
+            StartCoroutine(LoadSaveDataScene(saveData.dataSceneName));
         }
     }
 }
