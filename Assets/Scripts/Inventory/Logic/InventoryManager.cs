@@ -12,6 +12,7 @@ namespace Measy.Inventory
         [Header("建造蓝图")]
         public BluPrintDataList_SO bluPrintData;
         [Header("背包数据")]
+        public InventoryBag_SO playerBagTemp;
         public InventoryBag_SO playerBag;
         private InventoryBag_SO currentBoxBag;
         [Header("交易")]
@@ -24,7 +25,7 @@ namespace Measy.Inventory
         {
             ISaveable saveable = this;
             saveable.RegisterSaveable();
-            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.itemList);
+            //EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.itemList);
         }
         private void OnEnable()
         {
@@ -32,6 +33,7 @@ namespace Measy.Inventory
             EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
             EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
             EventHandler.BaseBagOpenEvent += OnBaseBagOpenEvent;
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
         }
         private void OnDisable()
         {
@@ -39,11 +41,20 @@ namespace Measy.Inventory
             EventHandler.HarvestAtPlayerPosition -= OnHarvestAtPlayerPosition;
             EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
             EventHandler.BaseBagOpenEvent -= OnBaseBagOpenEvent;
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
         }
+
 
         private void OnBaseBagOpenEvent(SlotType slotType, InventoryBag_SO bag_SO)
         {
             currentBoxBag = bag_SO;
+        }
+        private void OnStartNewGameEvent(int obj)
+        {
+            playerBag = Instantiate(playerBagTemp);
+            playerMoney = Settings.playerStartMoney;
+            boxDataDict.Clear();
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.itemList);
         }
 
         private void OnBuildFurnitureEvent(int ID, Vector3 mousePos)
@@ -342,6 +353,7 @@ namespace Measy.Inventory
         public void RestoreData(GameSaveData saveData)
         {
             this.playerMoney = saveData.playerMoney;
+            playerBag = Instantiate(playerBagTemp);
             playerBag.itemList = saveData.inventoryDict[playerBag.name];
             foreach (var item in saveData.inventoryDict)
             {

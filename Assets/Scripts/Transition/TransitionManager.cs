@@ -6,33 +6,40 @@ using UnityEngine.SceneManagement;
 
 namespace Measy.Transition
 {
-    public class TransitionManager : MonoBehaviour,ISaveable
+    public class TransitionManager :Singleton<TransitionManager>,ISaveable
     {
         public string startSceneName = string.Empty;
         private CanvasGroup fadeCanvasGroup;
         private bool isFade;
 
         public string GUID => GetComponent<DataGUID>().guid;
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             SceneManager.LoadScene("UI", LoadSceneMode.Additive);
         }
         private void OnEnable()
         {
             EventHandler.TransitionEvent += OnTransitionEvent;
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.TransitionEvent -= OnTransitionEvent;
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
         }
-        private IEnumerator Start()
+
+        private void OnStartNewGameEvent(int obj)
+        {
+            StartCoroutine(LoadSaveDataScene(startSceneName));
+        }
+
+        private void Start()
         {
             ISaveable saveable = this;
             saveable.RegisterSaveable();
             fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
-            yield return LoadSceneSetActive(startSceneName);
-            EventHandler.CallAfterSceneLoadedEvent();
         }
         private void OnTransitionEvent(string sceneToGo, Vector3 positionToGo)
         {

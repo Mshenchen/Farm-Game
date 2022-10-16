@@ -12,6 +12,24 @@ public class NPCManager : Singleton<NPCManager>
         base.Awake();
         InitSceneRouteDict();
     }
+    private void OnEnable()
+    {
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+    }
+    private void OnDisable()
+    {
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+    }
+
+    private void OnStartNewGameEvent(int obj)
+    {
+        foreach (var character in npcPositonList)
+        {
+            character.npc.position = character.position;
+            character.npc.GetComponent<NPCMovement>().StartScene = character.startScene;
+        }
+    }
+
     /// <summary>
     /// ³õÊ¼»¯Â·¾¶×Öµä
     /// </summary>

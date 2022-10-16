@@ -41,6 +41,8 @@ public class NPCMovement : MonoBehaviour,ISaveable
     private bool npcMove;
     private bool sceneLoaded;
     public bool interactable;
+    public bool isFirstLoad;
+    private Season currentSeason;
     private TimeSpan GameTime => TimeManager.Instance.GameTime;
 
     public string GUID => GetComponent<DataGUID>().guid;
@@ -102,7 +104,7 @@ public class NPCMovement : MonoBehaviour,ISaveable
     private void OnGameMinuteEvent(int minute, int hour, int day, Season season)
     {
         int time = (hour * 100) + minute;
-        //currentSeason = season;
+        currentSeason = season;
 
         ScheduleDetails matchSchedule = null;
         foreach (var schedule in scheduleSet)
@@ -133,6 +135,13 @@ public class NPCMovement : MonoBehaviour,ISaveable
             isInitialised = true;
         }
         sceneLoaded = true;
+        if (!isFirstLoad)
+        {
+            currentGridPosition = gird.WorldToCell(transform.position);
+            var schedule = new ScheduleDetails(0, 0, 0, 0, currentSeason, targetScene, (Vector2Int)tragetGridPosition, stopAnimationClip, interactable);
+            BuildPath(schedule);
+            isFirstLoad = true;
+        }
     }
     private void OnBeforeSceneUnloadEvent()
     {
@@ -224,6 +233,7 @@ public class NPCMovement : MonoBehaviour,ISaveable
     {
         movementSteps.Clear();
         currentSchedule = schedule;
+        targetScene = schedule.targetScene;
         tragetGridPosition = (Vector3Int)schedule.targetGridPosition;
         stopAnimationClip = schedule.clipAtStop;
         this.interactable = schedule.interactable;
@@ -381,12 +391,15 @@ public class NPCMovement : MonoBehaviour,ISaveable
             saveData.animationInstanceID = stopAnimationClip.GetInstanceID();
         }
         saveData.interactable = this.interactable;
+        saveData.timeDict = new Dictionary<string, int>();
+        saveData.timeDict.Add("currentSeason", (int)currentSeason);
         return saveData;
     }
 
     public void RestoreData(GameSaveData saveData)
     {
         isInitialised = true;
+        isFirstLoad = false;
         currentScene = saveData.dataSceneName;
         targetScene = saveData.targetScene;
         Vector3 pos = saveData.characterPosDict["currentPosition"].ToVector3();
@@ -398,5 +411,6 @@ public class NPCMovement : MonoBehaviour,ISaveable
             this.stopAnimationClip = Resources.InstanceIDToObject(saveData.animationInstanceID) as AnimationClip;
         }
         this.interactable = saveData.interactable;
+        this.currentSeason = (Season)saveData.timeDict["currentSeason"];
     }
 }

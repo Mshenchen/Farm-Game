@@ -15,7 +15,18 @@ namespace Measy.Save
         {
             base.Awake();
             jsonFolder = Application.persistentDataPath + "/SAVE DATA/";
+            ReadSaveData();
         }
+        private void OnEnable()
+        {
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+        }
+        private void OnDisable()
+        {
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        }
+
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.I))
@@ -23,10 +34,30 @@ namespace Measy.Save
             if (Input.GetKeyDown(KeyCode.O))
                 Load(currentDataIndex);
         }
+        private void OnStartNewGameEvent(int index)
+        {
+            currentDataIndex = index;
+        }
         public void RegisterSaveable(ISaveable saveable)
         {
             if (!saveableList.Contains(saveable))
                 saveableList.Add(saveable);
+        }
+        private void ReadSaveData()
+        {
+            if (Directory.Exists(jsonFolder))
+            {
+                for (int i = 0; i < dataSlots.Count; i++)
+                {
+                    var resultPath = jsonFolder + "data" + i + ".json";
+                    if (File.Exists(resultPath))
+                    {
+                        var stringData = File.ReadAllText(resultPath);
+                        var jsonData = JsonConvert.DeserializeObject<DataSlot>(stringData);
+                        dataSlots[i] = jsonData;
+                    }
+                }
+            }
         }
         private void Save(int index)
         {

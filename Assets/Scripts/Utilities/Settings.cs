@@ -25,4 +25,6 @@ public class Settings
     public const float lightChangeDuration = 25f;
     public static TimeSpan morningTime = new TimeSpan(5, 0, 0);
     public static TimeSpan nightTime = new TimeSpan(9, 0, 0);
+    public static Vector3 playerStartPos = new Vector3(2.5f, -11.6f,0);
+    public const int playerStartMoney = 100;
 }

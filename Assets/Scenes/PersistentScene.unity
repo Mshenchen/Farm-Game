@@ -3052,6 +3052,7 @@ MonoBehaviour:
   normalSpeed: 2
   isMoving: 0
   interactable: 0
+  isFirstLoad: 0
   blankAnimationClip: {fileID: 7400000, guid: 500fefed8113b4f7e8f2dc728631a63d, type: 2}
 --- !u!95 &1126932305
 Animator:
@@ -3374,6 +3375,7 @@ MonoBehaviour:
   normalSpeed: 2
   isMoving: 0
   interactable: 0
+  isFirstLoad: 0
   blankAnimationClip: {fileID: 7400000, guid: 500fefed8113b4f7e8f2dc728631a63d, type: 2}
 --- !u!114 &1149766600
 MonoBehaviour:
@@ -5239,7 +5241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDataList_SO: {fileID: 11400000, guid: c5f5314c101487d4c9cd9e5a08a9482d, type: 2}
   bluPrintData: {fileID: 11400000, guid: 554ea8ec9e386c6489a3f32c48628d25, type: 2}
-  playerBag: {fileID: 11400000, guid: 8ccc344de2d7a7c408dcaa7f9d45adcf, type: 2}
+  playerBagTemp: {fileID: 11400000, guid: 8ccc344de2d7a7c408dcaa7f9d45adcf, type: 2}
+  playerBag: {fileID: 0}
   playerMoney: 300
 --- !u!4 &2034040640
 Transform:

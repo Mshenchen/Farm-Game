@@ -25,6 +25,7 @@ namespace Measy.Inventory
             EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
             EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
         }
         private void Start()
         {
@@ -51,6 +52,13 @@ namespace Measy.Inventory
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
             EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
             EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        }
+
+        private void OnStartNewGameEvent(int obj)
+        {
+            sceneItemDict.Clear();
+            sceneFurnitureDict.Clear();
         }
 
         private void OnBuildFurnitureEvent(int ID,Vector3 mousePos)
