@@ -20,12 +20,13 @@ namespace Measy.Save
         private void OnEnable()
         {
             EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+            EventHandler.EndGameEvent += OnEndGameEvent;
         }
         private void OnDisable()
         {
             EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+            EventHandler.EndGameEvent -= OnEndGameEvent;
         }
-
 
         private void Update()
         {
@@ -38,6 +39,11 @@ namespace Measy.Save
         {
             currentDataIndex = index;
         }
+        private void OnEndGameEvent()
+        {
+            Save(currentDataIndex);
+        }
+
         public void RegisterSaveable(ISaveable saveable)
         {
             if (!saveableList.Contains(saveable))
