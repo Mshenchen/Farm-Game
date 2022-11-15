@@ -19,3 +19,6 @@ MonoBehaviour:
   - sceneName: Home
     ambient: 22
     music: 17
+  - sceneName: 00.Sea
+    ambient: 0
+    music: 0
