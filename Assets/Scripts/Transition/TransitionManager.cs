@@ -22,19 +22,12 @@ namespace Measy.Transition
         {
             EventHandler.TransitionEvent += OnTransitionEvent;
             EventHandler.StartNewGameEvent += OnStartNewGameEvent;
-            EventHandler.EndGameEvent += OnEndGameEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.TransitionEvent -= OnTransitionEvent;
             EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
-            EventHandler.EndGameEvent -= OnEndGameEvent;
-        }
-
-        private void OnEndGameEvent()
-        {
-            StartCoroutine(UnloadScene());
         }
 
         private void OnStartNewGameEvent(int obj)
@@ -52,13 +45,6 @@ namespace Measy.Transition
         {
             if(!isFade)
                 StartCoroutine(Transition(sceneToGo, positionToGo));
-        }
-        private IEnumerator UnloadScene()
-        {
-            EventHandler.CallBeforeSceneUnloadEvent();
-            yield return Fade(1f);
-            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-            yield return Fade(0f);
         }
         /// <summary>
         /// ³¡¾°ÇÐ»»

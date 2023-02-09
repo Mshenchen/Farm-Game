@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 98217453}
   - component: {fileID: 98217452}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Bounds (1)
   m_TagString: BoundsConfiner
   m_Icon: {fileID: 0}

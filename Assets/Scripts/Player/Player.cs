@@ -39,7 +39,6 @@ public class Player : MonoBehaviour,ISaveable
         EventHandler.MouseClickedEvent += OnMouseClickedEvent;
         EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
         EventHandler.StartNewGameEvent += OnStartNewGameEvent;
-        EventHandler.EndGameEvent += OnEndGameEvent;
     }
 
     private void OnBeforeSceneUnloadEvent()
@@ -55,10 +54,9 @@ public class Player : MonoBehaviour,ISaveable
         EventHandler.MouseClickedEvent -= OnMouseClickedEvent;
         EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
         EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
-        EventHandler.EndGameEvent -= OnEndGameEvent;
     }
 
-
+    
     private void Update()
     {
         if (inputDisable == false)
@@ -88,10 +86,6 @@ public class Player : MonoBehaviour,ISaveable
     {
         inputDisable = false;
         transform.position = Settings.playerStartPos;
-    }
-    private void OnEndGameEvent()
-    {
-        inputDisable = true;
     }
 
     private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails itemDetails)

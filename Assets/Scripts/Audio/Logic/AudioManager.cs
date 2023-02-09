@@ -26,20 +26,11 @@ public class AudioManager : Singleton<AudioManager>
     {
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadEvent;
         EventHandler.PlaySoundEvent += OnPlaySoundEvent;
-        EventHandler.EndGameEvent += OnEndGameEvent;
     }
     private void OnDisable()
     {
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadEvent;
         EventHandler.PlaySoundEvent -= OnPlaySoundEvent;
-        EventHandler.EndGameEvent -= OnEndGameEvent;
-    }
-
-    private void OnEndGameEvent()
-    {
-        if (soundRoutine != null)
-            StopCoroutine(soundRoutine);
-        muteSnapShot.TransitionTo(1f);
     }
 
     private void OnPlaySoundEvent(SoundName soundName)
@@ -99,9 +90,5 @@ public class AudioManager : Singleton<AudioManager>
     private float ConvertSoundVolume(float amount)
     {
         return (amount * 100 - 80);
-    }
-    public void SetMasterVolume(float value)
-    {
-        audioMixer.SetFloat("MasterVolume", (value * 100 - 80));
     }
 }
